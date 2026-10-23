@@ -18,14 +18,9 @@
     html, body { height: 100%; margin: 0; overflow: hidden; }
     body { background: linear-gradient(var(--sky) 0%, var(--sky) 30%, var(--water) 70%, var(--water) 100%); font-family: system-ui, -apple-system, sans-serif; }
     .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-    /* The whole journey in one picture: Sweden, the crossing, New York. It drifts slowly across. */
-    .world { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; animation: tour 48s ease-in-out infinite; }
-    @keyframes tour {
-      0%, 18% { object-position: 50% 50%; }
-      38%, 52% { object-position: 88% 50%; }
-      72%, 86% { object-position: 12% 50%; }
-      100% { object-position: 50% 50%; }
-    }
+    /* The whole journey in one still picture: Sweden, the crossing, New York. The title, Gustaf's
+       photograph and Kantis sit between x 780 and 2960 of its 3840 px, so that part always shows. */
+    .world { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
     .store { position: absolute; left: 50%; bottom: max(32px, calc(env(safe-area-inset-bottom) + 20px)); transform: translateX(-50%); display: block; line-height: 0; border-radius: 12px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25); transition: transform 0.2s; }
     .store:hover { transform: translateX(-50%) scale(1.04); }
     .store img { height: 60px; width: auto; }
@@ -34,18 +29,18 @@
     .links { position: absolute; right: 16px; bottom: max(12px, env(safe-area-inset-bottom)); display: flex; gap: 14px; }
     .links a { color: #fff; font-size: 13px; text-decoration: none; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); opacity: 0.85; }
     .links a:hover { opacity: 1; text-decoration: underline; }
-    /* On a phone held upright, the picture is a band across the middle, sized so the whole title fits, fading into the sky above and the sea below. */
-    @media (max-aspect-ratio: 1/1) {
-      .world { top: 18svh; height: min(64svh, 100vw); inset-inline: 0; bottom: auto; -webkit-mask-image: linear-gradient(transparent, #000 8%, #000 90%, transparent); mask-image: linear-gradient(transparent, #000 8%, #000 90%, transparent); }
+    /* On narrower screens (phones, upright tablets, 4:3) the picture becomes a band across the middle,
+       just tall enough for that part to fit the width, fading into the sky above and the sea below. */
+    @media (max-aspect-ratio: 132/100) {
+      .world { top: max(12px, calc(50svh - 38vw - 36px)); height: 76vw; inset-inline: 0; bottom: auto; object-position: 47% 50%; -webkit-mask-image: linear-gradient(transparent, #000 8%, #000 90%, transparent); mask-image: linear-gradient(transparent, #000 8%, #000 90%, transparent); }
       .soon { font-size: 18px; padding: 12px 22px; }
       .links { left: 0; right: 0; justify-content: center; }
     }
-    @media (prefers-reduced-motion: reduce) { .world { animation: none; } }
   </style>
 </head>
 <body>
   <h1 class="visually-hidden">Gustaf's Journey: a cozy word game with a life story</h1>
-  <img class="world" src="world-1920.jpg" srcset="world-1920.jpg 1920w, world-3840.jpg 3840w" sizes="(max-aspect-ratio: 1/1) 300vw, 100vw"
+  <img class="world" src="world-1920.jpg" srcset="world-1920.jpg 1920w, world-3840.jpg 3840w" sizes="(max-aspect-ratio: 132/100) 175vw, 100vw"
     alt="Gustaf's Journey: Kantis the chanterelle on a New York pier, Gustaf's photograph, a red Dala horse and the Swedish flag, and a steamer crossing to America">
   <p class="soon">Coming soon to iPhone and iPad</p>
   <nav class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="https://www.facebook.com/gustafsjourney">Facebook</a></nav>
