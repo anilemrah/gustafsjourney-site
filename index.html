@@ -241,12 +241,20 @@
     @media (max-width: 640px) { .final .cast .wide { display: none; } }
 
     /* Footer */
-    footer { background: var(--ink); color: #EFE5D6; padding: 40px 0 calc(40px + env(safe-area-inset-bottom)); font-size: 17px; }
-    footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 30px; align-items: center; justify-content: space-between; }
-    footer nav { display: flex; flex-wrap: wrap; gap: 14px 26px; }
-    footer a { color: #fff; text-decoration: none; font-weight: 700; }
-    footer a:hover { text-decoration: underline; }
-    footer small { display: block; color: #BFB2A2; font-size: 15px; margin-top: 4px; }
+    footer { background: var(--ink); color: #EFE5D6; padding: 52px 0 calc(34px + env(safe-area-inset-bottom)); font-size: 17px; }
+    .foot { display: grid; gap: 34px 40px; grid-template-columns: 1fr; }
+    @media (min-width: 760px) { .foot { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+    .foot .brand { color: #fff; }
+    .foot p { margin: 14px 0 18px; color: #CFC3B3; max-width: 22em; }
+    .foot nav { display: flex; flex-direction: column; gap: 10px; }
+    .foot h2 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #BFB2A2; margin-bottom: 4px; }
+    .foot a { color: #fff; text-decoration: none; font-weight: 700; }
+    .foot a:hover { text-decoration: underline; }
+    .foot .store-badge img { height: 56px; }
+    .foot-bottom { margin-top: 38px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .15); color: #BFB2A2; font-size: 15px; }
+    .town .credit { display: block; margin-top: 12px; font-size: 13.5px; color: var(--muted); }
+    .town .credit a { color: inherit; }
+    .more-link { display: inline-block; margin-top: 18px; font: 600 19px/1.3 "Fredoka", sans-serif; color: var(--teal-dark); }
   </style>
 </head>
 <body>
@@ -342,11 +350,12 @@
           <span class="eyebrow">How it plays</span>
           <h2 id="play-title">Swipe letters, fill the crossword, remember a life</h2>
           <p>Simple to learn, gentle on the eyes, and always something to look forward to.</p>
+          <a class="more-link" href="how-to-play/">How to play, step by step →</a>
         </div>
         <div class="plays">
           <div class="play"><div class="phone"><img src="img/screen-level.webp" alt="A crossword level with the letter wheel" width="640" height="1391" loading="lazy"></div><h3>Swipe to spell</h3><p>Join the letters on the wheel to make words and fill the crossword.</p></div>
           <div class="play"><div class="phone"><img src="img/screen-story.webp" alt="A story scene: Gustaf and a friend arrive in New York in 1891 with Kantis" width="640" height="1391" loading="lazy"></div><h3>Live the story</h3><p>Each chapter brings back a part of Gustaf's life, told in warm little scenes.</p></div>
-          <div class="play"><div class="phone"><img src="img/screen-card.webp" alt="A memory card with the Swedish word fäbod, summer farm" width="640" height="1391" loading="lazy"></div><h3>Learn Swedish words</h3><p>Every level ends with a memory and a Swedish word, always with its meaning.</p></div>
+          <div class="play"><div class="phone"><img src="img/screen-card.webp" alt="A memory card with the Swedish word fäbod, summer farm" width="640" height="1391" loading="lazy"></div><h3>Learn Swedish words</h3><p>Every level ends with a memory and a Swedish word, always with its meaning. <a href="swedish-words/">See some →</a></p></div>
           <div class="play"><div class="phone"><img src="img/screen-cookbook.webp" alt="Gustaf's Cookbook with Swedish dishes like crispbread and meatballs" width="640" height="1391" loading="lazy"></div><h3>Fill Gustaf's cookbook</h3><p>Collect 15 old Swedish dishes, keepsakes and outfits along the way.</p></div>
         </div>
       </div>
@@ -375,16 +384,17 @@
           <span class="eyebrow">Two Moras</span>
           <h2 id="moras-title">One name, two homes</h2>
           <p>Mora, Minnesota was named after Mora in Sweden, and the two towns became sister cities in 1972. Gustaf's Journey is a love letter to both.</p>
+          <a class="more-link" href="mora-minnesota/">Read the story of the two Moras →</a>
         </div>
         <div class="twin">
           <article class="town">
-            <div class="scene"><img src="img/scene-siljan.webp" alt="Lake Siljan with a red Swedish cottage" width="1080" height="675" loading="lazy"><img class="flag" src="img/flag-se.svg" alt="Flag of Sweden" width="160" height="100"></div>
-            <div class="body"><h3>Mora, Sweden</h3><p>On the shore of Lake Siljan in Dalarna. The red Dala horses are carved in nearby Nusnäs, and the great Vasaloppet ski race ends here.</p></div>
+            <div class="scene"><img src="img/photo-siljan-mora.webp" alt="Lake Siljan from the waterfront in Mora, with a fountain and boats" width="1200" height="904" loading="lazy"><img class="flag" src="img/flag-se.svg" alt="Flag of Sweden" width="160" height="100"></div>
+            <div class="body"><h3>Mora, Sweden</h3><p>On the shore of Lake Siljan in Dalarna. The red Dala horses are carved in nearby Nusnäs, and the great Vasaloppet ski race ends here.</p><span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Siljan,_Mora_-_20260710_-_06.jpg" rel="noopener">AleWi</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener license">CC BY-SA 4.0</a></span></div>
           </article>
           <div class="bridge"><span>Sister cities<small>since 1972</small></span></div>
           <article class="town">
-            <div class="scene"><img src="img/scene-mora-mn.webp" alt="Main street in Mora, Minnesota" width="1080" height="675" loading="lazy"><img class="flag" src="img/flag-us.svg" alt="Flag of the United States" width="190" height="100"></div>
-            <div class="body"><h3>Mora, Minnesota</h3><p>A town Swedish settlers named after home, with a 22-foot Dala horse and its own Vasaloppet ski race every winter since 1973.</p></div>
+            <div class="scene"><img src="img/photo-mora-mn-dala-horse.webp" alt="The 22-foot red Dala horse in Mora, Minnesota, under a Swedish flag" width="1200" height="932" loading="lazy"><img class="flag" src="img/flag-us.svg" alt="Flag of the United States" width="190" height="100"></div>
+            <div class="body"><h3>Mora, Minnesota</h3><p>A town Swedish settlers named after home, with a 22-foot Dala horse and its own Vasaloppet ski race every winter since 1973.</p><span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Dala_horse-Mora,_Minnesota-20070929.jpg" rel="noopener">Mykl Roventine</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="noopener license">CC BY 2.0</a></span></div>
           </article>
         </div>
       </div>
@@ -396,6 +406,7 @@
           <span class="eyebrow">Through the year</span>
           <h2 id="seasons-title">A new journey every season</h2>
           <p>Special chapters open on their dates, each with its own levels, scenes and a new outfit for Kantis.</p>
+          <a class="more-link" href="swedish-christmas/">Swedish Christmas traditions →</a>
         </div>
         <div class="seasons">
           <article class="season"><div class="scene"><img src="img/scene-lucia.webp" alt="A winter window with candles and saffron buns" width="1080" height="675" loading="lazy"><img class="who" src="img/kantis-lucia.webp" alt="Kantis wearing a Lucia crown of candles" width="428" height="520" loading="lazy"></div><div class="body"><span class="when">1–15 December</span><h3>Lucia</h3><p>Light in the long night, with saffron buns and candles.</p></div></article>
@@ -443,16 +454,17 @@
   </main>
 
   <footer>
-    <div class="wrap">
-      <div>Gustaf's Journey<small>© 2026 · Made in Sweden</small></div>
-      <nav aria-label="Footer">
-        <a href="https://apps.apple.com/app/apple-store/id6825813658?pt=121666913&amp;ct=website&amp;mt=8">App Store</a>
-        <a href="support/">Support</a>
-        <a href="privacy/">Privacy</a>
-        <a href="https://www.facebook.com/gustafsjourney">Facebook</a>
-        <a href="support/">Contact</a>
-      </nav>
+    <div class="wrap foot">
+      <div>
+        <a class="brand" href="#top"><img src="apple-touch-icon.png" alt="" width="44" height="44">Gustaf's Journey</a>
+        <p>A cozy crossword game with a life story, from Mora in Sweden to Mora, Minnesota. For iPhone and iPad.</p>
+        <a class="store-badge" href="https://apps.apple.com/app/apple-store/id6825813658?pt=121666913&amp;ct=website&amp;mt=8"><img src="app-store-badge.svg" alt="Download on the App Store" width="168" height="56"></a>
+      </div>
+      <nav aria-label="The game"><h2>The game</h2><a href="how-to-play/">How to play</a><a href="word-games-for-seniors/">Big letters, no timer</a><a href="#faq">Questions</a><a href="support/">Support</a></nav>
+      <nav aria-label="Swedish heritage"><h2>Swedish heritage</h2><a href="mora-minnesota/">The two Moras</a><a href="swedish-emigration/">Swedish emigration</a><a href="swedish-christmas/">A Swedish Christmas</a><a href="swedish-words/">Swedish words</a></nav>
+      <nav aria-label="About"><h2>About</h2><a href="about/">Made in Växjö</a><a href="https://www.facebook.com/gustafsjourney">Facebook</a><a href="privacy/">Privacy</a><a href="credits/">Credits</a></nav>
     </div>
+    <div class="wrap foot-bottom">© 2026 Gustaf's Journey · Made in Växjö, Sweden</div>
   </footer>
 </body>
 </html>
