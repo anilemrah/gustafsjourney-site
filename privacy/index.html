@@ -76,7 +76,8 @@
     <p>We may update this privacy policy from time to time. When we do, we will revise the “Last updated” date at the top of this page.</p>
 
     <h2>Contact</h2>
-    <p>Questions about this policy or your data? Email <a href="mailto:hello@gustafsjourney.com">hello@gustafsjourney.com</a>.</p>
+    <p>Questions about this policy or your data? Email <a data-mail="gustafsjourney.com|hello" href="../support/">our email address (turn on JavaScript to see it)</a>.</p>
   </main>
+<script>document.querySelectorAll("a[data-mail]").forEach(function (a) { var m = a.dataset.mail.split("|").reverse().join("@"); a.href = "mailto:" + m; a.textContent = m; });</script>
 </body>
 </html>
