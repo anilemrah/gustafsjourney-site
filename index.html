@@ -3,46 +3,456 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Gustaf's Journey</title>
-  <meta name="description" content="A cozy word game with a life story. Follow Gustaf from Sweden to America, one crossword at a time.">
-  <meta property="og:title" content="Gustaf's Journey">
-  <meta property="og:description" content="A cozy word game with a life story.">
-  <meta property="og:image" content="https://gustafsjourney.com/world-1920.jpg">
-  <meta property="og:url" content="https://gustafsjourney.com/">
+  <title>Gustaf's Journey – A cozy crossword game with a life story</title>
+  <meta name="description" content="A cozy word game for iPhone and iPad. Follow Gustaf from Mora, Sweden to Mora, Minnesota: every crossword you solve brings back a memory. Big letters, no clock.">
+  <link rel="canonical" href="https://gustafsjourney.com/">
   <meta name="theme-color" content="#A9D6E8">
   <meta name="apple-itunes-app" content="app-id=6825813658">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Gustaf's Journey">
+  <meta property="og:title" content="Gustaf's Journey – A cozy crossword game with a life story">
+  <meta property="og:description" content="From Mora, Sweden to Mora, Minnesota. Every crossword you solve brings back a memory. For iPhone and iPad.">
+  <meta property="og:url" content="https://gustafsjourney.com/">
+  <meta property="og:image" content="https://gustafsjourney.com/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" href="fonts/fredoka-600.woff" as="font" type="font/woff" crossorigin>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["VideoGame", "MobileApplication"],
+    "name": "Gustaf's Journey: Word Game",
+    "alternateName": "Gustaf's Journey",
+    "description": "A cozy crossword game with a life story. Follow Gustaf, a Swedish emigrant, from a farm by Lake Siljan in Mora, Sweden to a new life in Mora, Minnesota. Every crossword brings back a memory.",
+    "url": "https://gustafsjourney.com/",
+    "image": "https://gustafsjourney.com/img/og.jpg",
+    "operatingSystem": "iOS",
+    "applicationCategory": "GameApplication",
+    "genre": ["Word game", "Crossword", "Puzzle"],
+    "gamePlatform": ["iPhone", "iPad"],
+    "inLanguage": "en",
+    "installUrl": "https://apps.apple.com/app/gustafs-journey-word-game/id6825813658",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "sameAs": ["https://apps.apple.com/app/gustafs-journey-word-game/id6825813658", "https://www.facebook.com/gustafsjourney"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is Gustaf's Journey free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, it's free to download and play. After the first 20 levels, a short ad appears between some levels. An optional Pro subscription removes those ads and adds 3 free hints a day. Coin packs are optional too." } },
+      { "@type": "Question", "name": "Do I need an account?", "acceptedAnswer": { "@type": "Answer", "text": "No. You can start playing right away. If you like, sign in with Apple or Google to keep your progress safe and carry it to another iPhone or iPad." } },
+      { "@type": "Question", "name": "Can I make the text bigger?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Settings has three text sizes (Normal, Large and Larger) for the story, the memory cards and the Swedish words, and the game follows your iPhone's own text size too. The crossword letters are big from the start." } },
+      { "@type": "Question", "name": "Is there a time limit?", "acceptedAnswer": { "@type": "Answer", "text": "No. There's no clock in the levels, so you can take as long as you like." } },
+      { "@type": "Question", "name": "Do I need to know Swedish?", "acceptedAnswer": { "@type": "Answer", "text": "Not at all. The game is in English. Along the way you'll pick up Swedish words, each with its English meaning." } },
+      { "@type": "Question", "name": "Does it work on iPad or Android?", "acceptedAnswer": { "@type": "Answer", "text": "It's made for iPhone and iPad. There's no Android version yet." } }
+    ]
+  }
+  </script>
   <style>
-    @font-face { font-family: "Fredoka"; font-weight: 600; font-display: swap; src: url("/fonts/fredoka-600.woff") format("woff"); }
-    :root { --sky: #A9D6E8; --water: #4F8BA3; }
-    html, body { height: 100%; margin: 0; overflow: hidden; }
-    body { background: linear-gradient(var(--sky) 0%, var(--sky) 30%, var(--water) 70%, var(--water) 100%); font-family: system-ui, -apple-system, sans-serif; }
-    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-    /* The whole journey in one still picture: Sweden, the crossing, New York. The title, Gustaf's
-       photograph and Kantis sit between x 780 and 2960 of its 3840 px, so that part always shows. */
-    .world { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-    .store { position: absolute; left: 50%; bottom: max(32px, calc(env(safe-area-inset-bottom) + 20px)); transform: translateX(-50%); display: block; line-height: 0; border-radius: 12px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25); transition: transform 0.2s; }
-    .store:hover { transform: translateX(-50%) scale(1.04); }
-    .store img { height: 60px; width: auto; }
-    .links { position: absolute; right: 16px; bottom: max(12px, env(safe-area-inset-bottom)); display: flex; gap: 14px; }
-    .links a { color: #fff; font-size: 13px; text-decoration: none; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); opacity: 0.85; }
-    .links a:hover { opacity: 1; text-decoration: underline; }
-    /* On narrower screens (phones, upright tablets, 4:3) the picture becomes a band across the middle,
-       just tall enough for that part to fit the width, fading into the sky above and the sea below. */
-    @media (max-aspect-ratio: 132/100) {
-      .world { top: max(12px, calc(50svh - 38vw - 36px)); height: 76vw; inset-inline: 0; bottom: auto; object-position: 47% 50%; -webkit-mask-image: linear-gradient(transparent, #000 8%, #000 90%, transparent); mask-image: linear-gradient(transparent, #000 8%, #000 90%, transparent); }
-      .store { bottom: max(44px, calc(env(safe-area-inset-bottom) + 32px)); }
-      .store img { height: 54px; }
-      .links { left: 0; right: 0; justify-content: center; }
+    @font-face { font-family: "Fredoka"; font-weight: 600; font-display: swap; src: url("fonts/fredoka-600.woff") format("woff"); }
+    @font-face { font-family: "Nunito"; font-weight: 400; font-display: swap; src: url("fonts/nunito-400.woff") format("woff"); }
+    @font-face { font-family: "Nunito"; font-weight: 700; font-display: swap; src: url("fonts/nunito-700.woff") format("woff"); }
+    :root {
+      --bg: #FFF8EC; --paper: #FFFDF7; --ink: #2B2118; --muted: #6B5E52; --line: #EADBC4; --outline: #3A2416;
+      --sky: #A9D6E8; --sky-light: #CBE8F3; --sea: #9FD3E0; --sea-deep: #4F8BA3; --teal: #2A8176; --teal-dark: #1F6A60;
+      --coral: #E2574C; --sun: #F5C451; --sun-soft: #FDF0C8; --meadow: #A9C786; --sand: #F3DDB3;
+      --radius: 28px; --shadow: 0 10px 0 rgba(58, 36, 22, .12), 0 18px 40px rgba(58, 36, 22, .12);
     }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 400 19px/1.6 "Nunito", system-ui, -apple-system, sans-serif; overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: var(--teal-dark); }
+    h1, h2, h3 { font-family: "Fredoka", system-ui, sans-serif; font-weight: 600; line-height: 1.12; margin: 0; letter-spacing: -.005em; }
+    h2 { font-size: clamp(32px, 4.6vw, 52px); }
+    h3 { font-size: 26px; }
+    p { margin: 0; }
+    .wrap { width: min(1180px, 100% - 40px); margin-inline: auto; }
+    .eyebrow { display: inline-block; font: 600 16px/1 "Fredoka", sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--teal-dark); background: #E3F3EF; border: 3px solid var(--outline); border-radius: 999px; padding: 9px 16px; margin-bottom: 18px; }
+    .section { padding: clamp(64px, 9vw, 120px) 0; }
+    .section-head { text-align: center; max-width: 760px; margin: 0 auto clamp(36px, 5vw, 60px); }
+    .section-head p { margin-top: 16px; font-size: 21px; color: var(--muted); }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* Buttons */
+    .store-badge { display: inline-block; line-height: 0; border-radius: 14px; transition: transform .2s; }
+    .store-badge img { height: 64px; width: auto; }
+    .store-badge:hover { transform: translateY(-2px) scale(1.03); }
+    .store-badge:focus-visible, .btn:focus-visible { outline: 4px solid var(--coral); outline-offset: 4px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; font: 600 19px/1 "Fredoka", sans-serif; text-decoration: none; color: #fff; background: var(--teal); border: 3px solid var(--outline); border-radius: 999px; padding: 13px 22px; box-shadow: 0 5px 0 var(--outline); transition: transform .15s, box-shadow .15s; white-space: nowrap; }
+    .btn:hover { transform: translateY(2px); box-shadow: 0 3px 0 var(--outline); }
+    .btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 20; background: rgba(255, 248, 236, .92); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 3px solid var(--outline); }
+    .nav .wrap { display: flex; align-items: center; gap: 24px; height: 76px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); font: 600 24px/1 "Fredoka", sans-serif; }
+    .brand img { width: 44px; height: 44px; border-radius: 12px; border: 3px solid var(--outline); }
+    .nav-links { display: none; gap: 28px; margin-left: auto; }
+    .nav-links a { color: var(--ink); text-decoration: none; font: 600 18px/1 "Fredoka", sans-serif; }
+    .nav-links a:hover { color: var(--teal-dark); }
+    .nav .btn { margin-left: auto; padding: 11px 18px; font-size: 17px; }
+    @media (min-width: 980px) { .nav-links { display: flex; } .nav .btn { margin-left: 8px; } }
+
+    /* Hero */
+    .hero { position: relative; overflow: hidden; background: linear-gradient(#CBE8F3 0%, #A9D6E8 45%, #9FD3E0 78%, #8CC7D6 100%); padding: clamp(36px, 6vw, 76px) 0 0; }
+    .cloud { position: absolute; background: #fff; border-radius: 999px; opacity: .9; }
+    .cloud::before, .cloud::after { content: ""; position: absolute; background: #fff; border-radius: 50%; }
+    .cloud::before { width: 55%; height: 170%; left: 14%; bottom: 20%; }
+    .cloud::after { width: 38%; height: 130%; right: 12%; bottom: 25%; }
+    .c1 { width: 190px; height: 46px; top: 12%; left: -40px; }
+    .c2 { width: 150px; height: 38px; top: 7%; right: 8%; }
+    .c3 { width: 120px; height: 30px; top: 44%; right: -30px; opacity: .7; }
+    .hero-grid { position: relative; display: grid; gap: 24px; align-items: end; }
+    .hero-copy { text-align: center; padding-bottom: 8px; }
+    .journey { display: inline-flex; align-items: center; gap: clamp(10px, 2vw, 18px); background: rgba(255, 253, 247, .94); border: 3px solid var(--outline); border-radius: 26px; padding: 14px clamp(14px, 2.4vw, 22px); box-shadow: var(--shadow); margin-bottom: 26px; }
+    .place { display: flex; flex-direction: column; align-items: center; gap: 8px; font: 600 clamp(15px, 1.7vw, 18px)/1.1 "Fredoka", sans-serif; white-space: nowrap; }
+    .place img { height: clamp(48px, 7vw, 74px); width: auto; filter: drop-shadow(0 4px 6px rgba(0,0,0,.18)); }
+    .route { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: -18px; font: 600 clamp(15px, 1.7vw, 18px)/1 "Fredoka", sans-serif; }
+    .route svg { width: clamp(64px, 10vw, 120px); height: 20px; }
+    .hero h1 { font-size: clamp(40px, 6.4vw, 76px); }
+    .hero h1 em { font-style: normal; color: var(--teal-dark); }
+    .hero .lead { margin: 20px auto 0; max-width: 34em; font-size: clamp(19px, 2vw, 22px); color: #3B3027; }
+    .cta { margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .ticks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; list-style: none; padding: 0; margin: 0; font-weight: 700; font-size: 17px; color: #2F3B3A; }
+    .ticks li { display: flex; align-items: center; gap: 7px; }
+    .ticks svg { width: 20px; height: 20px; flex: none; }
+    .stage { --pw: clamp(200px, 52vw, 280px); --gw: clamp(128px, 34vw, 190px); position: relative; height: calc(var(--pw) * 2.173 + 60px); }
+    .stage .phone { left: calc(50% - (var(--gw) + 10px + var(--pw)) / 2 + var(--gw) + 10px); top: 60px; transform: none; width: var(--pw); border-width: clamp(8px, 2.6vw, 11px); border-radius: clamp(34px, 9vw, 48px); }
+    .phone { position: absolute; aspect-ratio: 640 / 1391; border: 12px solid #1C1C1E; border-radius: 52px; overflow: hidden; background: #000; box-shadow: 0 28px 60px rgba(20, 40, 60, .35); }
+    .phone img { width: 100%; height: 100%; object-fit: cover; }
+    .hero .gustaf { position: absolute; left: calc(50% - (var(--gw) + 10px + var(--pw)) / 2); bottom: -30px; width: var(--gw); filter: drop-shadow(0 10px 14px rgba(0,0,0,.25)); z-index: 2; }
+    .hero .kantis { position: absolute; left: calc(50% - (var(--gw) + 10px + var(--pw)) / 2 + var(--gw) + 10px + var(--pw) * .6); top: 0; width: calc(var(--pw) * .46); filter: drop-shadow(0 10px 14px rgba(0,0,0,.25)); z-index: 2; animation: bob 3.6s ease-in-out infinite; transform-origin: 50% 100%; }
+    @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-6px) rotate(3deg); } }
+    @media (prefers-reduced-motion: reduce) { .hero .kantis { animation: none; } html { scroll-behavior: auto; } }
+    .hero { padding-bottom: 30px; }
+    @media (min-width: 1100px) {
+      .hero-grid { grid-template-columns: 1.08fr .92fr; gap: 10px; }
+      .hero-copy { text-align: left; padding-bottom: 70px; }
+      .hero .lead { margin-left: 0; }
+      .cta { align-items: flex-start; }
+      .ticks { justify-content: flex-start; }
+      .stage { --pw: 280px; --gw: 190px; }
+    }
+    .shore { position: relative; height: 34px; margin-top: -2px; background: var(--bg); }
+    .shore svg { position: absolute; left: 0; right: 0; top: -33px; width: 100%; height: 36px; }
+
+    /* Panorama */
+    .panorama { margin: 0; position: relative; border-top: 3px solid var(--outline); border-bottom: 3px solid var(--outline); background: var(--sky); }
+    .panorama img { width: 100%; height: clamp(260px, 43vw, 640px); object-fit: cover; object-position: 50% 50%; }
+    .panorama figcaption { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); background: rgba(255, 253, 247, .95); border: 3px solid var(--outline); border-radius: 999px; padding: 8px 20px; font: 600 clamp(15px, 1.8vw, 19px)/1.2 "Fredoka", sans-serif; white-space: nowrap; box-shadow: var(--shadow); }
+
+    /* Story chapters */
+    .chapters { display: grid; gap: 26px; grid-template-columns: 1fr; }
+    @media (min-width: 700px) { .chapters { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1100px) { .chapters { grid-template-columns: repeat(4, 1fr); } }
+    .chapter { background: var(--paper); border: 3px solid var(--outline); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .chapter .scene { position: relative; aspect-ratio: 16 / 11; overflow: hidden; border-bottom: 3px solid var(--outline); }
+    .chapter .scene > img:first-child { width: 100%; height: 100%; object-fit: cover; }
+    .chapter .who { position: absolute; left: 12px; bottom: 0; height: 74%; width: auto; filter: drop-shadow(0 6px 8px rgba(0,0,0,.25)); }
+    .year { position: absolute; top: 14px; right: 14px; background: var(--sun); border: 3px solid var(--outline); border-radius: 999px; padding: 6px 14px; font: 600 20px/1 "Fredoka", sans-serif; }
+    .chapter .body { padding: 22px 24px 26px; }
+    .chapter h3 { font-size: 24px; }
+    .chapter .age { display: block; font: 600 15px/1 "Fredoka", sans-serif; color: var(--teal-dark); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; }
+    .chapter p { margin-top: 10px; font-size: 18px; color: #3B3027; }
+
+    /* Kantis */
+    .kantis-band { background: linear-gradient(#FDF0C8, #FBE6AE); border-top: 3px solid var(--outline); border-bottom: 3px solid var(--outline); }
+    .kantis-grid { display: grid; gap: 28px; align-items: center; justify-items: center; text-align: center; }
+    .kantis-grid img { width: clamp(200px, 40vw, 320px); filter: drop-shadow(0 14px 18px rgba(120, 70, 0, .3)); }
+    .bubble { position: relative; background: var(--paper); border: 3px solid var(--outline); border-radius: 26px; padding: 26px 28px; box-shadow: var(--shadow); max-width: 620px; text-align: left; }
+    .bubble h2 { font-size: clamp(30px, 4vw, 44px); }
+    .bubble p { margin-top: 14px; font-size: 20px; }
+    @media (min-width: 860px) {
+      .kantis-grid { grid-template-columns: auto 1fr; justify-items: start; gap: 48px; }
+      .bubble::before { content: ""; position: absolute; left: -22px; top: 46%; width: 36px; height: 36px; background: var(--paper); border-left: 3px solid var(--outline); border-bottom: 3px solid var(--outline); transform: rotate(45deg); }
+    }
+
+    /* How it plays */
+    .plays { display: grid; gap: 34px 22px; grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 1000px) { .plays { grid-template-columns: repeat(4, 1fr); } }
+    .play { text-align: center; }
+    .play .phone { position: relative; left: auto; top: auto; transform: none; width: min(100%, 250px); margin: 0 auto; border-width: 9px; border-radius: 40px; box-shadow: 0 18px 40px rgba(20, 40, 60, .22); }
+    .play h3 { margin-top: 22px; font-size: 23px; }
+    .play p { margin-top: 8px; font-size: 18px; color: var(--muted); max-width: 17em; margin-inline: auto; }
+
+    /* Features */
+    .features { display: grid; gap: 20px; grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .features { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1000px) { .features { grid-template-columns: repeat(3, 1fr); } }
+    .feature { display: flex; gap: 18px; align-items: flex-start; background: var(--paper); border: 3px solid var(--outline); border-radius: 24px; padding: 22px; box-shadow: var(--shadow); }
+    .feature .icon { flex: none; width: 60px; height: 60px; border-radius: 18px; border: 3px solid var(--outline); display: grid; place-items: center; }
+    .feature .icon svg { width: 32px; height: 32px; }
+    .feature h3 { font-size: 22px; }
+    .feature p { margin-top: 6px; font-size: 17.5px; color: var(--muted); }
+
+    /* Two Moras */
+    .moras { background: linear-gradient(var(--bg), #EAF5F8); }
+    .twin { display: grid; gap: 26px; grid-template-columns: 1fr; align-items: stretch; }
+    @media (min-width: 900px) { .twin { grid-template-columns: 1fr auto 1fr; } }
+    .town { background: var(--paper); border: 3px solid var(--outline); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .town .scene { position: relative; aspect-ratio: 16 / 10; border-bottom: 3px solid var(--outline); }
+    .town .scene > img:first-child { width: 100%; height: 100%; object-fit: cover; }
+    .town .flag { position: absolute; left: 50%; bottom: -36px; transform: translateX(-50%); height: 72px; width: auto; filter: drop-shadow(0 6px 8px rgba(0,0,0,.22)); }
+    .town .body { padding: 52px 26px 28px; text-align: center; }
+    .town h3 { font-size: 30px; }
+    .town p { margin-top: 10px; font-size: 18.5px; color: #3B3027; }
+    .bridge { display: grid; place-items: center; }
+    .bridge span { display: block; text-align: center; background: var(--sun); border: 3px solid var(--outline); border-radius: 22px; padding: 16px 18px; font: 600 20px/1.2 "Fredoka", sans-serif; box-shadow: var(--shadow); max-width: 220px; }
+    .bridge small { display: block; font: 700 15px/1.3 "Nunito", sans-serif; margin-top: 6px; }
+
+    /* Seasons */
+    .seasons { display: grid; gap: 22px; grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .seasons { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1100px) { .seasons { grid-template-columns: repeat(4, 1fr); } }
+    .season { position: relative; border: 3px solid var(--outline); border-radius: var(--radius); overflow: hidden; background: var(--paper); box-shadow: var(--shadow); }
+    .season .scene { position: relative; aspect-ratio: 16 / 11; border-bottom: 3px solid var(--outline); overflow: hidden; }
+    .season .scene > img:first-child { width: 100%; height: 100%; object-fit: cover; }
+    .season .who { position: absolute; right: 8px; bottom: 0; height: 70%; width: auto; filter: drop-shadow(0 6px 8px rgba(0,0,0,.3)); }
+    .season .body { padding: 18px 22px 22px; }
+    .season .when { font: 600 15px/1 "Fredoka", sans-serif; color: var(--coral); text-transform: uppercase; letter-spacing: .05em; }
+    .season h3 { margin-top: 8px; font-size: 23px; }
+    .season p { margin-top: 6px; font-size: 17.5px; color: var(--muted); }
+
+    /* FAQ */
+    .faq { max-width: 860px; margin: 0 auto; display: grid; gap: 14px; }
+    details { background: var(--paper); border: 3px solid var(--outline); border-radius: 22px; box-shadow: 0 5px 0 rgba(58, 36, 22, .12); }
+    summary { cursor: pointer; list-style: none; padding: 20px 64px 20px 24px; position: relative; font: 600 21px/1.3 "Fredoka", sans-serif; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: ""; position: absolute; right: 22px; top: 50%; width: 26px; height: 26px; margin-top: -13px; border-radius: 50%; background: var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px no-repeat; transition: transform .2s; }
+    details[open] summary::after { transform: rotate(180deg); }
+    details p { padding: 0 24px 22px; font-size: 18.5px; color: #3B3027; }
+
+    /* Final CTA */
+    .final { position: relative; overflow: hidden; background: linear-gradient(#CBE8F3, #9FD3E0); border-top: 3px solid var(--outline); text-align: center; padding: clamp(64px, 9vw, 110px) 0 0; }
+    .final h2 { max-width: 15em; margin: 0 auto; }
+    .final .flags { display: flex; justify-content: center; gap: 22px; margin-bottom: 26px; }
+    .final .flags img { height: 64px; width: auto; filter: drop-shadow(0 4px 6px rgba(0,0,0,.2)); }
+    .final p { margin: 16px auto 0; font-size: 21px; max-width: 30em; }
+    .final .store-badge { margin-top: 28px; }
+    .final .cast { display: flex; justify-content: center; align-items: flex-end; gap: clamp(12px, 4vw, 60px); margin-top: 36px; }
+    .final .cast img { height: clamp(120px, 22vw, 210px); width: auto; filter: drop-shadow(0 10px 12px rgba(0,0,0,.2)); }
+    .final .cast .k { height: clamp(110px, 19vw, 180px); margin-bottom: 10px; }
+    @media (max-width: 640px) { .final .cast .wide { display: none; } }
+
+    /* Footer */
+    footer { background: var(--ink); color: #EFE5D6; padding: 40px 0 calc(40px + env(safe-area-inset-bottom)); font-size: 17px; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 30px; align-items: center; justify-content: space-between; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 14px 26px; }
+    footer a { color: #fff; text-decoration: none; font-weight: 700; }
+    footer a:hover { text-decoration: underline; }
+    footer small { display: block; color: #BFB2A2; font-size: 15px; margin-top: 4px; }
   </style>
 </head>
 <body>
-  <h1 class="visually-hidden">Gustaf's Journey: a cozy word game with a life story</h1>
-  <img class="world" src="world-1920.jpg" srcset="world-1920.jpg 1920w, world-3840.jpg 3840w" sizes="(max-aspect-ratio: 132/100) 175vw, 100vw"
-    alt="Gustaf's Journey: Kantis the chanterelle on a New York pier, Gustaf's photograph, a red Dala horse and the Swedish flag, and a steamer crossing to America">
-  <a class="store" href="https://apps.apple.com/app/gustafs-journey-word-game/id6825813658"><img src="app-store-badge.svg" alt="Download on the App Store"></a>
-  <nav class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="https://www.facebook.com/gustafsjourney">Facebook</a></nav>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Gustaf's Journey, back to top"><img src="apple-touch-icon.png" alt="" width="44" height="44">Gustaf's Journey</a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#story">The story</a>
+        <a href="#play">How it plays</a>
+        <a href="#seasons">Seasons</a>
+        <a href="#faq">Questions</a>
+      </nav>
+      <a class="btn" href="https://apps.apple.com/app/apple-store/id6825813658?pt=121666913&amp;ct=website&amp;mt=8"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.37 12.6c-.02-2.13 1.74-3.15 1.82-3.2-1-1.45-2.54-1.65-3.08-1.67-1.3-.13-2.55.77-3.21.77-.67 0-1.69-.75-2.78-.73-1.42.02-2.74.83-3.48 2.11-1.49 2.58-.38 6.39 1.06 8.48.71 1.02 1.55 2.17 2.65 2.13 1.07-.04 1.47-.69 2.76-.69 1.28 0 1.65.69 2.77.67 1.15-.02 1.87-1.04 2.57-2.07.82-1.18 1.15-2.33 1.17-2.39-.03-.01-2.24-.86-2.25-3.41zM14.26 6.35c.58-.71.98-1.69.87-2.68-.84.04-1.87.57-2.47 1.27-.54.62-1.02 1.63-.89 2.59.94.07 1.9-.47 2.49-1.18z"/></svg>Download</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="journey" aria-label="From Mora, Sweden in 1891 to Mora, Minnesota">
+            <span class="place"><img src="img/flag-se.svg" alt="Flag of Sweden" width="160" height="100">Mora, Sweden</span>
+            <span class="route" aria-hidden="true">1891<svg viewBox="0 0 120 20"><path d="M2 10h100" stroke="#3A2416" stroke-width="4" stroke-dasharray="9 7" stroke-linecap="round"/><path d="M100 2l16 8-16 8z" fill="#3A2416"/></svg></span>
+            <span class="place"><img src="img/flag-us.svg" alt="Flag of the United States" width="190" height="100">Mora, Minnesota</span>
+          </div>
+          <h1 id="hero-title">A cozy crossword game with a <em>life story</em></h1>
+          <p class="lead">Follow Gustaf from a red cottage by Lake Siljan in Sweden to a new life in Minnesota. Every crossword you solve brings back a memory, with Kantis the cheerful chanterelle by your side.</p>
+          <div class="cta">
+            <a class="store-badge" href="https://apps.apple.com/app/apple-store/id6825813658?pt=121666913&amp;ct=website&amp;mt=8"><img src="app-store-badge.svg" alt="Download on the App Store" width="192" height="64"></a>
+            <ul class="ticks">
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#2A8176"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Free to download</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#2A8176"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>iPhone &amp; iPad</li>
+              <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#2A8176"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>No clock, no rush</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="phone"><img src="img/screen-level.webp" alt="A Gustaf's Journey level: a crossword grid with the words GALE, GULLS and SAGE, and a wheel of letters to swipe" width="640" height="1391" fetchpriority="high"></div>
+          <img class="gustaf" src="img/gustaf-1952.webp" alt="Gustaf, aged 80, waving" width="468" height="560">
+          <img class="kantis" src="img/kantis-wave.webp" alt="Kantis the chanterelle in a straw hat, waving" width="461" height="520">
+        </div>
+      </div>
+    </section>
+    <div class="shore" aria-hidden="true"><svg viewBox="0 0 1440 36" preserveAspectRatio="none"><path d="M0 18 C 120 4, 240 32, 360 18 S 600 4, 720 18 S 960 32, 1080 18 S 1320 4, 1440 18 V36 H0z" fill="#FFF8EC"/><path d="M0 18 C 120 4, 240 32, 360 18 S 600 4, 720 18 S 960 32, 1080 18 S 1320 4, 1440 18" fill="none" stroke="#3A2416" stroke-width="3"/></svg></div>
+
+    <section class="section" id="story" aria-labelledby="story-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">The story</span>
+          <h2 id="story-title">Meet Gustaf</h2>
+          <p>Gustaf is 80 years old. It's 1952, and from his home in Mora, Minnesota, he looks back on a long life that began on the other side of the ocean.</p>
+        </div>
+        <div class="chapters">
+          <article class="chapter">
+            <div class="scene"><img src="img/scene-siljan.webp" alt="A red cottage by Lake Siljan in Sweden" width="1080" height="675" loading="lazy"><img class="who" src="img/gustaf-1880.webp" alt="Little Gustaf in a red knitted sweater" width="319" height="560" loading="lazy"><span class="year">1880</span></div>
+            <div class="body"><span class="age">Little Gustaf, 8</span><h3>Mora by the lake</h3><p>Born in a red cottage by Lake Siljan. Every June the whole family walks the cows up to the summer farm, deep in the forest.</p></div>
+          </article>
+          <article class="chapter">
+            <div class="scene"><img src="img/scene-gothenburg-harbor.webp" alt="A steamship in Gothenburg harbour" width="1080" height="675" loading="lazy"><img class="who" src="img/gustaf-1891.webp" alt="Young Gustaf in a flat cap, waving goodbye" width="432" height="560" loading="lazy"><span class="year">1891</span></div>
+            <div class="body"><span class="age">Young Gustaf, 19</span><h3>The harbour in Gothenburg</h3><p>At nineteen he leaves with one trunk and a ticket to America. “I'll write every month, Mother. I promise.”</p></div>
+          </article>
+          <article class="chapter">
+            <div class="scene"><img src="img/scene-mora-mn.webp" alt="The main street of Mora, Minnesota" width="1080" height="675" loading="lazy"><img class="who" src="img/gustaf-1915.webp" alt="Gustaf the farmer in suspenders" width="398" height="560" loading="lazy"><span class="year">1915</span></div>
+            <div class="body"><span class="age">Gustaf, 43</span><h3>A new life in Minnesota</h3><p>In a new town that was also called Mora, he builds a farm, a family and a life. But he never stops dreaming of the lake back home.</p></div>
+          </article>
+          <article class="chapter">
+            <div class="scene"><img src="img/scene-mn-woods.webp" alt="Autumn birch woods in Minnesota" width="1080" height="675" loading="lazy"><img class="who" src="img/gustaf-1952.webp" alt="Gustaf at 80, waving" width="468" height="560" loading="lazy"><span class="year">1952</span></div>
+            <div class="body"><span class="age">Gustaf, 80</span><h3>Something golden</h3><p>One autumn day, at the foot of a birch, a little chanterelle wakes up and asks: “Do you remember, Gustaf?” Then it leads him back through his life.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <figure class="panorama">
+      <img src="world-1920.jpg" srcset="world-1920.jpg 1920w, world-3840.jpg 3840w" sizes="100vw" alt="The whole journey in one picture: red cottages, a Dala horse and the Swedish flag on one shore, a steamer crossing the sea, and Kantis on a New York pier beside the American flag and the Statue of Liberty" width="1920" height="823" loading="lazy">
+      <figcaption>Sweden, the crossing, and America</figcaption>
+    </figure>
+
+    <section class="section kantis-band" aria-labelledby="kantis-title">
+      <div class="wrap kantis-grid">
+        <img src="img/kantis-cheer.webp" alt="Kantis the chanterelle cheering in a straw hat" width="489" height="520" loading="lazy">
+        <div class="bubble">
+          <h2 id="kantis-title">Hej! I'm Kantis.</h2>
+          <p>I'm a chanterelle, and I'll keep you company on every level. I cheer you on, I chat about Gustaf's memories, and I dress up for the seasons: a straw hat in summer, a Lucia crown in December, and plenty more in the trunk.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="play" aria-labelledby="play-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">How it plays</span>
+          <h2 id="play-title">Swipe letters, fill the crossword, remember a life</h2>
+          <p>Simple to learn, gentle on the eyes, and always something to look forward to.</p>
+        </div>
+        <div class="plays">
+          <div class="play"><div class="phone"><img src="img/screen-level.webp" alt="A crossword level with the letter wheel" width="640" height="1391" loading="lazy"></div><h3>Swipe to spell</h3><p>Join the letters on the wheel to make words and fill the crossword.</p></div>
+          <div class="play"><div class="phone"><img src="img/screen-story.webp" alt="A story scene: Gustaf and a friend arrive in New York in 1891 with Kantis" width="640" height="1391" loading="lazy"></div><h3>Live the story</h3><p>Each chapter brings back a part of Gustaf's life, told in warm little scenes.</p></div>
+          <div class="play"><div class="phone"><img src="img/screen-card.webp" alt="A memory card with the Swedish word fäbod, summer farm" width="640" height="1391" loading="lazy"></div><h3>Learn Swedish words</h3><p>Every level ends with a memory and a Swedish word, always with its meaning.</p></div>
+          <div class="play"><div class="phone"><img src="img/screen-cookbook.webp" alt="Gustaf's Cookbook with Swedish dishes like crispbread and meatballs" width="640" height="1391" loading="lazy"></div><h3>Fill Gustaf's cookbook</h3><p>Collect 15 old Swedish dishes, keepsakes and outfits along the way.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0" aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Made for relaxed play</span>
+          <h2 id="features-title">Comfortable from the very first word</h2>
+        </div>
+        <div class="features">
+          <div class="feature"><span class="icon" style="background:#FDF0C8"><svg viewBox="0 0 32 32" aria-hidden="true"><text x="2" y="24" font-family="Fredoka, sans-serif" font-size="18" font-weight="600" fill="#3A2416">A</text><text x="13" y="26" font-family="Fredoka, sans-serif" font-size="26" font-weight="600" fill="#3A2416">A</text></svg></span><div><h3>Big, clear letters</h3><p>Big letter tiles, and three text sizes for the story and the Swedish words.</p></div></div>
+          <div class="feature"><span class="icon" style="background:#DDF1EC"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="17" r="11" fill="#fff" stroke="#3A2416" stroke-width="3"/><path d="M16 11v6l4 3" fill="none" stroke="#3A2416" stroke-width="3" stroke-linecap="round"/><path d="M5 5l22 24" stroke="#E2574C" stroke-width="3.5" stroke-linecap="round"/></svg></span><div><h3>No clock, no rush</h3><p>There's no timer in the levels. Play for five minutes or an hour.</p></div></div>
+          <div class="feature"><span class="icon" style="background:#FCE1DE"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 26c0-5 4-8 9-8s9 3 9 8" fill="#fff" stroke="#3A2416" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="11" r="5.5" fill="#fff" stroke="#3A2416" stroke-width="3"/></svg></span><div><h3>No account needed</h3><p>Start playing right away. Sign in only if you want your progress backed up.</p></div></div>
+          <div class="feature"><span class="icon" style="background:#E3F0FA"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="3" width="17" height="26" rx="3.5" fill="#fff" stroke="#3A2416" stroke-width="3"/><rect x="15" y="10" width="13" height="19" rx="3" fill="#fff" stroke="#3A2416" stroke-width="3"/></svg></span><div><h3>Swipe or tap</h3><p>Swipe across the letters or tap them one by one, whichever feels easier. On iPhone and iPad.</p></div></div>
+          <div class="feature"><span class="icon" style="background:#FDF0C8"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="6" width="24" height="22" rx="4" fill="#fff" stroke="#3A2416" stroke-width="3"/><path d="M4 12h24" stroke="#3A2416" stroke-width="3"/><path d="M10 3v6M22 3v6" stroke="#3A2416" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="20" r="3.4" fill="#E2574C"/></svg></span><div><h3>A puzzle every day</h3><p>A fresh daily puzzle with a Swedish word of the day, and a forgiving streak.</p></div></div>
+          <div class="feature"><span class="icon" style="background:#DDF1EC"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 26c6-1 7-7 12-8s8-6 10-12" fill="none" stroke="#3A2416" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 5"/><circle cx="5" cy="26" r="3.5" fill="#2A8176" stroke="#3A2416" stroke-width="2"/><path d="M27 3l1.6 3.4 3.4.4-2.5 2.3.7 3.4-3.2-1.8-3.2 1.8.7-3.4-2.5-2.3 3.4-.4z" fill="#F5C451" stroke="#3A2416" stroke-width="1.6" stroke-linejoin="round"/></svg></span><div><h3>380 story levels</h3><p>13 chapters, plus side trips, seasonal journeys and gentle music you can turn off.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section moras" aria-labelledby="moras-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Two Moras</span>
+          <h2 id="moras-title">One name, two homes</h2>
+          <p>Mora, Minnesota was named after Mora in Sweden, and the two towns became sister cities in 1972. Gustaf's Journey is a love letter to both.</p>
+        </div>
+        <div class="twin">
+          <article class="town">
+            <div class="scene"><img src="img/scene-siljan.webp" alt="Lake Siljan with a red Swedish cottage" width="1080" height="675" loading="lazy"><img class="flag" src="img/flag-se.svg" alt="Flag of Sweden" width="160" height="100"></div>
+            <div class="body"><h3>Mora, Sweden</h3><p>On the shore of Lake Siljan in Dalarna. The red Dala horses are carved in nearby Nusnäs, and the great Vasaloppet ski race ends here.</p></div>
+          </article>
+          <div class="bridge"><span>Sister cities<small>since 1972</small></span></div>
+          <article class="town">
+            <div class="scene"><img src="img/scene-mora-mn.webp" alt="Main street in Mora, Minnesota" width="1080" height="675" loading="lazy"><img class="flag" src="img/flag-us.svg" alt="Flag of the United States" width="190" height="100"></div>
+            <div class="body"><h3>Mora, Minnesota</h3><p>A town Swedish settlers named after home, with a 22-foot Dala horse and its own Vasaloppet ski race every winter since 1973.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="seasons" aria-labelledby="seasons-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Through the year</span>
+          <h2 id="seasons-title">A new journey every season</h2>
+          <p>Special chapters open on their dates, each with its own levels, scenes and a new outfit for Kantis.</p>
+        </div>
+        <div class="seasons">
+          <article class="season"><div class="scene"><img src="img/scene-lucia.webp" alt="A winter window with candles and saffron buns" width="1080" height="675" loading="lazy"><img class="who" src="img/kantis-lucia.webp" alt="Kantis wearing a Lucia crown of candles" width="428" height="520" loading="lazy"></div><div class="body"><span class="when">1–15 December</span><h3>Lucia</h3><p>Light in the long night, with saffron buns and candles.</p></div></article>
+          <article class="season"><div class="scene"><img src="img/scene-christmas.webp" alt="A cozy log cabin with a fireplace and a Christmas tree" width="1080" height="675" loading="lazy"><img class="who" src="img/kantis-tomte.webp" alt="Kantis in a red tomte hat" width="455" height="520" loading="lazy"></div><div class="body"><span class="when">16 December – 13 January</span><h3>Christmas in Two Moras</h3><p>A Swedish Christmas in Minnesota, from Brita's parcel to the church supper.</p></div></article>
+          <article class="season"><div class="scene"><img src="img/scene-vasaloppet.webp" alt="A ski track through snowy forest" width="1080" height="675" loading="lazy"><img class="who" src="img/kantis-ski.webp" alt="Kantis wearing a race bib, number 9" width="495" height="520" loading="lazy"></div><div class="body"><span class="when">March</span><h3>The Great Ski Race</h3><p>The Vasaloppet, all the way to the finish in Mora.</p></div></article>
+          <article class="season"><div class="scene"><img src="img/scene-midsummer.webp" alt="A midsummer pole in a flowering meadow" width="1080" height="675" loading="lazy"><img class="who" src="img/kantis-midsummer.webp" alt="Kantis wearing a crown of summer flowers" width="522" height="520" loading="lazy"></div><div class="body"><span class="when">June</span><h3>Midsummer in Dalarna</h3><p>Flowers, a maypole and the lightest night of the year.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq" style="padding-top: 0" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Questions</span>
+          <h2 id="faq-title">Good to know</h2>
+        </div>
+        <div class="faq">
+          <details><summary>Is Gustaf's Journey free?</summary><p>Yes, it's free to download and play. After the first 20 levels, a short ad appears between some levels. An optional Pro subscription removes those ads and adds 3 free hints a day. Coin packs are optional too.</p></details>
+          <details><summary>Do I need an account?</summary><p>No. You can start playing right away. If you like, sign in with Apple or Google to keep your progress safe and carry it to another iPhone or iPad.</p></details>
+          <details><summary>Can I make the text bigger?</summary><p>Yes. Settings has three text sizes (Normal, Large and Larger) for the story, the memory cards and the Swedish words, and the game follows your iPhone's own text size too. The crossword letters are big from the start.</p></details>
+          <details><summary>Is there a time limit?</summary><p>No. There's no clock in the levels, so you can take as long as you like.</p></details>
+          <details><summary>Do I need to know Swedish?</summary><p>Not at all. The game is in English. Along the way you'll pick up Swedish words, each with its English meaning.</p></details>
+          <details><summary>Does it work on iPad or Android?</summary><p>It's made for iPhone and iPad. There's no Android version yet.</p></details>
+          <details><summary>I need help with the game</summary><p>We're happy to help. Visit our <a href="support/">support page</a> or write to <a href="mailto:hello@gustafsjourney.com">hello@gustafsjourney.com</a>.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final" aria-labelledby="final-title">
+      <span class="cloud c1"></span><span class="cloud c2"></span>
+      <div class="wrap">
+        <div class="flags"><img src="img/flag-se.svg" alt="Flag of Sweden" width="160" height="100"><img src="img/flag-us.svg" alt="Flag of the United States" width="190" height="100"></div>
+        <h2 id="final-title">Gustaf has a story to tell you</h2>
+        <p>Pour a cup of coffee and solve your first crossword. Kantis is waiting.</p>
+        <a class="store-badge" href="https://apps.apple.com/app/apple-store/id6825813658?pt=121666913&amp;ct=website&amp;mt=8"><img src="app-store-badge.svg" alt="Download on the App Store" width="192" height="64"></a>
+        <div class="cast" aria-hidden="true">
+          <img class="wide" src="img/gustaf-1880.webp" alt="" width="319" height="560" loading="lazy">
+          <img src="img/gustaf-1891.webp" alt="" width="432" height="560" loading="lazy">
+          <img class="k" src="img/kantis-wave.webp" alt="" width="461" height="520" loading="lazy">
+          <img class="wide" src="img/gustaf-1915.webp" alt="" width="398" height="560" loading="lazy">
+          <img src="img/gustaf-1952.webp" alt="" width="468" height="560" loading="lazy">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>Gustaf's Journey<small>© 2026 · Made in Sweden</small></div>
+      <nav aria-label="Footer">
+        <a href="https://apps.apple.com/app/apple-store/id6825813658?pt=121666913&amp;ct=website&amp;mt=8">App Store</a>
+        <a href="support/">Support</a>
+        <a href="privacy/">Privacy</a>
+        <a href="https://www.facebook.com/gustafsjourney">Facebook</a>
+        <a href="mailto:hello@gustafsjourney.com">hello@gustafsjourney.com</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
